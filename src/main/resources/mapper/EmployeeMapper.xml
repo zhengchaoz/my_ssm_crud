@@ -44,7 +44,7 @@
         <result column="gender" jdbcType="CHAR" property="gender"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="d_id" jdbcType="INTEGER" property="dId"/>
-        <association property="department" jdbcType="com.ssm.bean.Department">
+        <association property="department" javaType="com.ssm.bean.Department">
             <id column="dept_id" property="deptId"/>
             <result column="dept_name" property="deptName"/>
         </association>

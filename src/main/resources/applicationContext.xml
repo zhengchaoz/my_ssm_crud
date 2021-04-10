@@ -4,7 +4,14 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- Spring的配置文件，这里主要配置和业务逻辑有关的，1.数据源、2.整合mybatis、3.事务控制 -->
 
@@ -26,16 +33,16 @@
     <!-- 配置和MyBatis的整合 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 指定MyBatis全局配置文件的路径 -->
-        <property name="configLocation" value=""></property>
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <!-- 指定数据源 -->
-        <property name="dataSource" value="pooledDataSource"></property>
+        <property name="dataSource" ref="pooledDataSource"></property>
         <!-- 指定MyBatis的mapper文件的位置 -->
-        <property name="mapperLocations" value="classpath:mapper/"></property>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
     </bean>
     <!-- 配置扫描器，将mybatis接口的实现加入到ioc容器中 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 扫描所有dao接口的实现 -->
-        <property name="basePackage" value="com/ssm/dao"></property>
+        <property name="basePackage" value="com.ssm.dao"></property>
     </bean>
 
     <!-- 事务控制管理器 -->
