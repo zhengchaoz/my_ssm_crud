@@ -27,13 +27,20 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-           <!--<scope>test</scope>-->
+            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <!--<scope>test</scope>-->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.2.0</version>
         </dependency>
 
         <!-- SSM框架的jar包 -->
@@ -117,6 +124,33 @@
             <version>4.12</version>
             <!--<scope>compile</scope>-->
         </dependency>
+        <!-- 解决
+            JSON Binding provider org.eclipse.yasson.JsonBindingProvider not found
+            Provider org.glassfish.json.JsonProviderImpl not found
+            所确实的依赖 -->
+        <dependency>
+            <groupId>javax.json.bind</groupId>
+            <artifactId>javax.json.bind-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
+        <!-- 返回JSON字符串的支持，@ResponseBody -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+
 
     </dependencies>
 

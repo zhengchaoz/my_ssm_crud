@@ -64,5 +64,6 @@
         <include refid="Base_Column_List"/>
         from tbl_emp e
         left join tnl_dept d on e.d_id = d.dept_id
+        order by emp_id
     </select>
 </mapper>

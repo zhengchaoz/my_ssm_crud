@@ -1,5 +1,7 @@
 package com.ssm.bean;
 
+import java.util.Objects;
+
 public class Employee {
     private Integer empId;
 
@@ -12,6 +14,17 @@ public class Employee {
     private Integer dId;
 
     private Department department;
+
+    public Employee() {
+    }
+
+    public Employee(Integer empId, String empName, String gender, String email, Integer dId) {
+        this.empId = empId;
+        this.empName = empName;
+        this.gender = gender;
+        this.email = email;
+        this.dId = dId;
+    }
 
     public Integer getEmpId() {
         return empId;
@@ -59,5 +72,30 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(empId, employee.empId) && Objects.equals(empName, employee.empName) && Objects.equals(gender, employee.gender) && Objects.equals(email, employee.email) && Objects.equals(dId, employee.dId) && Objects.equals(department, employee.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(empId, empName, gender, email, dId, department);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empId=" + empId +
+                ", empName='" + empName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", dId=" + dId +
+                ", department=" + department.toString() +
+                '}';
     }
 }
