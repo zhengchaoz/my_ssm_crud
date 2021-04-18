@@ -1,14 +1,18 @@
 package com.ssm.bean;
 
+import javax.validation.constraints.Pattern;
 import java.util.Objects;
 
 public class Employee {
     private Integer empId;
 
+    @Pattern(regexp = "(^[\\u4e00-\\u9fa5]+●?[\\u4e00-\\u9fa5]+$|^[a-zA-Z0-9]+\\s?[\\.·\\-()a-zA-Z]*[a-zA-Z]+\\)?$)",
+            message = "输入数据非法！")
     private String empName;
 
     private String gender;
 
+    @Pattern(regexp = "(^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$)", message = "输入数据非法！")
     private String email;
 
     private Integer dId;

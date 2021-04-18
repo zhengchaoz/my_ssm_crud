@@ -32,4 +32,20 @@ public class EmployeeService {
         return employeeMapper.selectAllWithDept();
     }
 
+    public void saveEmp(Employee employee) {
+        employeeMapper.insert(employee);
+    }
+
+    public Employee getEmp(Integer id) {
+        Employee employee = employeeMapper.selectByPrimaryKeyWithDept(id);
+        return employee;
+    }
+
+    public void editEnp(Employee employee) {
+        employeeMapper.updateByPrimaryKey(employee);
+    }
+
+    public void delEmp(Integer id) {
+        employeeMapper.deleteByPrimaryKey(id);
+    }
 }

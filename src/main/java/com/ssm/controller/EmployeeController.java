@@ -8,10 +8,10 @@ import com.ssm.utils.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -69,6 +69,61 @@ public class EmployeeController {
             e.printStackTrace();
             return Msg.bust().put("pageInfo", pageInfo);
         }
+    }
+
+    /**
+     * 员工保存
+     *
+     * @return
+     */
+    @RequestMapping(value = "/emp", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg saveEmp(@Valid Employee employee, BindingResult result) {
+        if (result.hasErrors()) {
+            return Msg.bust().put("error", result.getFieldErrors().toString());
+        } else {
+            employeeService.saveEmp(employee);
+            return Msg.success();
+        }
+    }
+
+    /**
+     * 根据id查询员工
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getEmp(@PathVariable("id") Integer id) {
+        Employee employee = employeeService.getEmp(id);
+        return Msg.success().put("emp", employee);
+    }
+
+    /**
+     * 员工更新
+     *
+     * @param employee
+     * @return
+     */
+    @RequestMapping(value = "/emp/{empId}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Msg saveEmp(Employee employee) {
+        employeeService.editEnp(employee);
+        return Msg.success();
+    }
+
+    /**
+     * 单个删除，批量删除逻辑可以二合一，没写
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/emp/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Msg delEmp(@PathVariable Integer id) {
+        employeeService.delEmp(id);
+        return Msg.success();
     }
 
 }
