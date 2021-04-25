@@ -2,8 +2,10 @@ package com.ssm.test;
 
 import com.ssm.bean.Department;
 import com.ssm.bean.Employee;
+import com.ssm.bean.User;
 import com.ssm.dao.DepartmentMapper;
 import com.ssm.dao.EmployeeMapper;
+import com.ssm.dao.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -26,6 +30,9 @@ public class MapperTest {
 
     @Autowired
     EmployeeMapper employeeMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     // 已配置的可以执行批量操作的sqlSession
     @Autowired
@@ -54,6 +61,20 @@ public class MapperTest {
                 employeeMapper.insert(new Employee(null, uid, "G", uid + "@qq.com", 2));
         }
         System.out.println("批量完成！");
+    }
+
+    @Test
+    public void testUser() {
+//        User user = userMapper.getUser(18711352577L, "Zheng2577");
+//        System.out.println(user.toString());
+
+//        User user = new User(18711352577L, "Zheng2577", LocalDateTime.now().toString());
+//        int i = userMapper.updateUserById(user);
+//        if (i == 1)
+//            System.out.println(user.toString());
+
+        User user = userMapper.getUserByLoginToken("2021-04-25T11:47:42.008");
+        System.out.println(user.toString());
     }
 
 }
